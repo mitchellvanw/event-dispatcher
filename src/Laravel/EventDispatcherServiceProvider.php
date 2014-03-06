@@ -1,4 +1,4 @@
-<?php namespace Mitch\EventDispatcher;
+<?php namespace Mitch\EventDispatcher\Laravel;
 
 use Illuminate\Support\ServiceProvider;
 

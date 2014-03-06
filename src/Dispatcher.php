@@ -27,7 +27,7 @@ class Dispatcher
 
     private function getListeners($name)
     {
-        if ( ! isset($this->sorted[$name]) {
+        if ( ! isset($this->sorted[$name])) {
             $this->sortListeners($name);
         }
         return $this->sorted[$name];
@@ -36,14 +36,14 @@ class Dispatcher
     private function sortListeners($name)
     {
         $this->sorted[$name] = [];
-        if (isset($this->listeners[$name]) {
+        if (isset($this->listeners[$name])) {
             $sorted = $this->listeners[$name];
             krsort($sorted);
             $this->sorted[$name] = $sorted;
         }
     }
 
-    private function addListener(Listener $listener)
+    private function addListener($name, Listener $listener, $priority = 0)
     {
         $this->listeners[$name][$priority][] = $listener;
         $this->clearSorted($name);

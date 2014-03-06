@@ -2,6 +2,28 @@
 
 An Event Dispatcher built with a focus on Domain Events.
 
+## Installation
+
+Begin by installing the package through Composer. Edit your project's `composer.json` file to require `mitch/event-dispatcher`.
+
+  ```php
+  "require": {
+    "mitch/event-dispatcher": "1.x"
+  }
+  ```
+
+Next use Composer to update your project from the the Terminal:
+
+  ```php
+  php composer.phar update
+  ```
+
+Once the package has been installed you'll need to add the service provider. Open your `app/config/app.php` configuration file, and add a new item to the `providers` array.
+
+  ```php
+  'Mitch\EventDispatcher\Laravel\EventDispatcherServiceProvider'
+  ```
+
 ## How It Works
 
 ### Event

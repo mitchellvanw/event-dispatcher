@@ -6,11 +6,7 @@ class Dispatcher
 
     public function dispatch($events)
     {
-        if ( ! is_array($events)) {
-            return $this->fireEvent($events);
-        }
-
-        foreach ($events as $event) {
+        foreach ((array) $events as $event) {
             $this->fireEvent($event);
         }
     }
@@ -23,23 +19,21 @@ class Dispatcher
     private function fireEvent(Event $event)
     {
         $listeners = $this->getListeners($event->getName());
-
-        if ( ! $listeners) {
-            return;
-        }
-
-        foreach ($this->getListeners($event->getName()) as $listener) {
+        if ( ! $listeners) return;
+        foreach ($listeners as $listener) {
             $listener->handle($event);
         }
     }
 
     private function getListeners($name)
     {
-        if ( ! isset($this->listeners[$name])) {
-            return;
-        }
-
+        if ( ! $this->hasListeners($name)) return;
         return $this->listeners[$name];
+    }
+
+    private function hasListeners($name)
+    {
+        return isset($this->listeners[$name]);
     }
 
     private function addListener($name, Listener $listener)

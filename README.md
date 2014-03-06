@@ -2,8 +2,6 @@
 
 This Event Dispatcher has been built with a focus on Domain Events.
 
-Here's how it works.
-
 ## How It Works
 
 ### Event

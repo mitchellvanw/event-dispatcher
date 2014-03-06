@@ -1,6 +1,7 @@
 {
     "name": "mitch/event-dispatcher",
     "description": "Event Dispatcher with a focus on Domain Events",
+    "license": "MIT",
     "authors": [
         {
             "name": "Mitchell van Wijngaarden",

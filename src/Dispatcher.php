@@ -6,7 +6,11 @@ class Dispatcher
 
     public function dispatch($events)
     {
-        foreach ((array) $events as $event) {
+        if ( ! is_array($events)) {
+            $this->fireEvent($events);
+        }
+
+        foreach ($events as $event) {
             $this->fireEvent($event);
         }
     }

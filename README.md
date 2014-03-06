@@ -7,7 +7,7 @@ Here's how it works.
 ## How It Works
 
 ### Event
-In your domain you'll create an event, for let's say when a new user has been created.  
+In your domain you'll create an event, for let's say when a new user has been created.
 Lets call this event `UserCreatedEvent`. This event will hold the necessary information for the listener to fulfill it's job.
 You have complete freedom about which arguments it takes, since you'll be the one passing them in.
 In some ways this event is a `Date Transfer Object` (DTO).
@@ -63,7 +63,7 @@ Same rule with the listeners as the events, you have complete freedom with the a
 When an event is dispatched the `handle` method on the correct listeners will be called.
 
 ### Listening
-Now we got the building blocks ready lets start listening for some new users!
+Now we got the building blocks ready lets start listening for some new users, shall we.
 For the sake of this example, the code is kept as simple as possible.
 
 ```php

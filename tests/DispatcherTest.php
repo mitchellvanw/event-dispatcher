@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once('stubs/TestUserAddedEvent.php');
 require_once('stubs/TestUserDeletedEvent.php');
@@ -29,7 +29,7 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
         $listener = m::mock('Mitch\EventDispatcher\Listener');
         $listener->shouldReceive('handle')->with($event)->once();
 
-        $this->sut->listenOn('accounts.user_added', $listener);
+        $this->sut->addListener('accounts.user_added', $listener);
         $this->sut->dispatch($event);
     }
 
@@ -40,7 +40,7 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
         $listener = m::mock('Mitch\EventDispatcher\Listener');
         $listener->shouldReceive('handle')->times(0);
 
-        $this->sut->listenOn('accounts.user_exploded', $listener);
+        $this->sut->addListener('accounts.user_exploded', $listener);
         $this->sut->dispatch($event);
     }
 
@@ -53,7 +53,7 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
         $listener->shouldReceive('handle')->with($event1)->once();
         $listener->shouldReceive('handle')->with($event2)->once();
 
-        $this->sut->listenOn('accounts.user_added', $listener);
+        $this->sut->addListener('accounts.user_added', $listener);
         $this->sut->dispatch([$event1, $event2]);
     }
 
@@ -68,8 +68,8 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
         $listenerDelete = m::mock('Mitch\EventDispatcher\Listener');
         $listenerDelete->shouldReceive('handle')->with($eventDelete)->once();
 
-        $this->sut->listenOn('accounts.user_added', $listenerAdd);
-        $this->sut->listenOn('accounts.user_deleted', $listenerDelete);
+        $this->sut->addListener('accounts.user_added', $listenerAdd);
+        $this->sut->addListener('accounts.user_deleted', $listenerDelete);
         $this->sut->dispatch([$eventAdd, $eventDelete]);
     }
 }

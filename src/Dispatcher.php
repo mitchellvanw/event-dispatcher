@@ -14,9 +14,9 @@ class Dispatcher
         $this->fireEvent($event);
     }
 
-    public function listenOn($name, Listener $listener)
+    private function addListener($name, Listener $listener)
     {
-        $this->addListener($name, $listener);
+        $this->listeners[$name][] = $listener;
     }
 
     private function fireEvents(array $events)
@@ -51,10 +51,5 @@ class Dispatcher
     private function hasListeners($name)
     {
         return isset($this->listeners[$name]);
-    }
-
-    private function addListener($name, Listener $listener)
-    {
-        $this->listeners[$name][] = $listener;
     }
 }

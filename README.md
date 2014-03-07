@@ -92,7 +92,7 @@ $mailer = // Some mail package...
 $listener = new UserAddedMailerListener($mailer);
 
 $dispatcher = new Dispatcher;
-$dispatcher->listenOn('accounts.user_added', $listener);
+$dispatcher->addListener('accounts.user_added', $listener);
 
 // Dispatching event
 $user = // A wild user appeared..

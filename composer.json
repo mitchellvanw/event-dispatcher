@@ -1,6 +1,7 @@
 {
     "name": "mitch/event-dispatcher",
     "description": "Event Dispatcher with a focus on Domain Events",
+    "license": "MIT",
     "authors": [
         {
             "name": "Mitchell van Wijngaarden",
@@ -18,5 +19,10 @@
             "Mitch\\EventDispatcher\\": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
 }

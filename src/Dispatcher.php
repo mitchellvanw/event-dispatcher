@@ -14,7 +14,7 @@ class Dispatcher
         $this->fireEvent($event);
     }
 
-    private function addListener($name, Listener $listener)
+    public function addListener($name, Listener $listener)
     {
         $this->listeners[$name][] = $listener;
     }

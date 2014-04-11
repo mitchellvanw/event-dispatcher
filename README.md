@@ -28,7 +28,7 @@ Once the package has been installed you'll need to add the service provider. Ope
 
 ### Event
 In your domain you'll create an event, for let's say when a new user has been added.
-Lets call this event `UserAddedEvent`. This event will hold the necessary information for the listener to fulfill it's job.
+Lets call this event `UserCreatedEvent`. This event will hold the necessary information for the listener to fulfill it's job.
 You have complete freedom about which arguments it takes, since you'll be the one passing them in.
 In some ways this event is a `Date Transfer Object` (DTO).
 
@@ -39,7 +39,7 @@ For example:
 
 use Mitch\EventDispatcher\Event;
 
-class UserAddedEvent implements Event
+class UserCreatedEvent implements Event
 {
     public $user;
 
@@ -50,20 +50,20 @@ class UserAddedEvent implements Event
 
     public function getName()
     {
-        return 'accounts.user_added';
+        return 'UserCreated';
     }
 }
 ```
 
 ### Listener
-An event without a listener does no good for us, so lets create an email listener `UserAddedMailerListener` for the event `UserAddedEvent`.
+An event without a listener does no good for us, so lets create an email listener `MailNewlyCreatedUserListener` for the event `UserCreatedEvent`.
 
 ```php
-<?php namespace Domain\Accounts\Listeners;
+<?php namespace Domain\Accounts\EventListeners;
 
 use Mitch\EventDispatcher\Listener;
 
-class UserAddedMailerListener implements Listener
+class MailNewlyCreatedUserListener implements Listener
 {
     private $mailer
 
@@ -87,23 +87,32 @@ Now we got the building blocks ready lets start listening for some new users, sh
 For the sake of this example, the code is kept as simple as possible.
 
 ```php
+use Mitch\EventDispatcher\Dispatcher;
+use Domain\Accounts\Events\UserCreatedEvent;
+use Domain\Accounts\EventListeners\MailNewlyCreatedUserListener;
+
 // Listening for event
 $mailer = // Some mail package...
-$listener = new UserAddedMailerListener($mailer);
+$listener = new MailNewlyCreatedUserListener($mailer);
 
 $dispatcher = new Dispatcher;
-$dispatcher->addListener('accounts.user_added', $listener);
+$dispatcher->addListener('UserCreated', $listener);
 
 // Dispatching event
 $user = // A wild user appeared..
-$event = new UserAddedEvent($user);
+$event = new UserCreatedEvent($user);
 
 $dispatcher->dispatch($event);
 ```
 
+### Dispatching multiple
 For extra hipster points you can dispatch multiple events in 1 call.
 
 ```php
+use Mitch\EventDispatcher\Dispatcher;
+use Domain\Accounts\UserAddedEvent;
+use Domain\Achievements\UserGotAchievementEvent;
+
 $user = ...;
 $achievement = ...;
 $events = [
@@ -111,7 +120,9 @@ $events = [
     new UserGotAchievementEvent($user, $achievement)
 ];
 
+$dispatcher = new Dispatcher;
 $dispatcher->dispatch($events);
 ```
 
 ## That's it!
+Later tater

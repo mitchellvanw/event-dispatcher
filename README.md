@@ -1,5 +1,7 @@
 # Event Dispatcher
 
+> This repository has been moved to [Big Name](https://github.com/heybigname/event-dispatcher). There won't be any support here. Visit Big Name's repository for the newest updates.
+
 An Event Dispatcher built with a focus on Domain Events.
 
 ## Installation

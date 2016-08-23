@@ -20,6 +20,12 @@ Next use Composer to update your project from the the Terminal:
   php composer.phar update
   ```
 
+You can also use composer require commnad:
+
+```
+composer require mitch/event-dispatcher
+```
+
 Once the package has been installed you'll need to add the service provider. Open your `app/config/app.php` configuration file, and add a new item to the `providers` array.
 
   ```php
